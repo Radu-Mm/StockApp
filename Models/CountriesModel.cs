@@ -1,8 +1,12 @@
-﻿namespace StockApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StockApp.Models
 {
     public class CountriesModel
     {
         public Guid CountryId { get; set; }
+
+        [StringLength(100,ErrorMessage = "Campul nu poate fi mai mare de 100 de caractere")]
         public string CountryName { get; set; } = null!;
     }
 }

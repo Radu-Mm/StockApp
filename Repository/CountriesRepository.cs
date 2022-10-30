@@ -80,6 +80,11 @@ namespace StockApp.Repository
             var dboject = _DBContext.Countries.FirstOrDefault(x => x.CountryId == model.CountryId);
             if (dboject != null)
             {
+                //var districts = _DBContext.Districts.Select(x => x.CountryId == dboject.CountryId);
+                //foreach(var district in dboject.Districts)
+                //{
+                //    //_DBContext.DistrictsRepository
+                //}
                 _DBContext.Countries.Remove(dboject);
                 _DBContext.SaveChanges();
             }

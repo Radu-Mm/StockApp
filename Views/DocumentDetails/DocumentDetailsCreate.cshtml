@@ -1,0 +1,61 @@
+﻿@model StockApp.Models.DocumentDetailsModel
+
+@{
+    ViewData["Title"] = "DocumentDetailsCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>DocumentDetailsCreate</h1>
+
+<h4>DocumentDetailsModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+@*            <div class="form-group">
+                <label asp-for="DocDetId" class="control-label"></label>
+                <input asp-for="DocDetId" class="form-control" />
+                <span asp-validation-for="DocDetId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="DocId" class="control-label"></label>
+                <input asp-for="DocId" class="form-control" />
+                <span asp-validation-for="DocId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label"></label>
+                <input asp-for="ProductId" class="form-control" />
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Unitprice" class="control-label"></label>
+                <input asp-for="Unitprice" class="form-control" />
+                <span asp-validation-for="Unitprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Vat" class="control-label"></label>
+                <input asp-for="Vat" class="form-control" />
+                <span asp-validation-for="Vat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuantityRemaining" class="control-label"></label>
+                <input asp-for="QuantityRemaining" class="form-control" />
+                <span asp-validation-for="QuantityRemaining" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model StockApp.Models.DocumentTypeModel
+
+@{
+    ViewData["Title"] = "DocumentTypeCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>DocumentTypeCreate</h1>
+
+<h4>DocumentTypeModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           @* <div class="form-group">
+                <label asp-for="DocTypeId" class="control-label"></label>
+                <input asp-for="DocTypeId" class="form-control" />
+                <span asp-validation-for="DocTypeId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="DocType" class="control-label"></label>
+                <input asp-for="DocType" class="form-control" />
+                <span asp-validation-for="DocType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

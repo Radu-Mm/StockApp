@@ -10,12 +10,11 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+@if (Model != null)
+{
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DistrictId)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.DistrictName)
             </th>
@@ -26,11 +25,9 @@
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DistrictId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DistrictName)
             </td>
@@ -46,3 +43,8 @@
 }
     </tbody>
 </table>
+}
+        else
+        {
+            <p>Empty Model</p>
+        }

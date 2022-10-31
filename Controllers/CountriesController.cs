@@ -31,9 +31,10 @@ namespace StockApp.Controllers
         }
 
         // GET: CountriesController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = countriesRepository.GetCountryByID(id);
+            return View("CountriesDetails",model);
         }
 
         // GET: CountriesController/Create
@@ -72,44 +73,60 @@ namespace StockApp.Controllers
  
 
         // GET: CountriesController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = countriesRepository.GetCountryByID(id);
+            return View("CountryEdit",model);
         }
 
         // POST: CountriesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
-            try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+
+                try
+                {
+                    var model = new CountriesModel();
+                    var task = TryUpdateModelAsync(model);
+                    task.Wait();
+                    if (task.Result)
+                    {
+                        countriesRepository.UpdateCountry(model);
+
+                    }
+
+             
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return RedirectToAction("Edit", id);
+                }
             }
         }
 
         // GET: CountriesController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = countriesRepository.GetCountryByID(id);
+            return View("CountryDelete", model);
         }
 
         // POST: CountriesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                countriesRepository.DeleteCountry(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete",id);
             }
         }
     }

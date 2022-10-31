@@ -75,9 +75,9 @@ namespace StockApp.Repository
             }
         }
 
-        public void DeleteCountry(CountriesModel model)
+        public void DeleteCountry(Guid ID)
         {
-            var dboject = _DBContext.Countries.FirstOrDefault(x => x.CountryId == model.CountryId);
+            var dboject = _DBContext.Countries.FirstOrDefault(x => x.CountryId == ID);
             if (dboject != null)
             {
                 //var districts = _DBContext.Districts.Select(x => x.CountryId == dboject.CountryId);

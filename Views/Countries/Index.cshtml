@@ -8,11 +8,14 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Adaugati o tara.</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.CountryId)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.CountryName)
             </th>
@@ -22,13 +25,16 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.CountryId)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.CountryName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.CountryId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.CountryId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.CountryId  })
             </td>
         </tr>
 }

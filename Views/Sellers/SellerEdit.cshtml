@@ -1,25 +1,25 @@
 ﻿@model StockApp.Models.SellersModel
 
 @{
-    ViewData["Title"] = "SellersCreate";
+    ViewData["Title"] = "SellerEdit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>SellersCreate</h1>
+<h1>SellerEdit</h1>
 
 <h4>SellersModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
-@*            <div class="form-group" hidden >
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
                 <label asp-for="SellerId" class="control-label"></label>
                 <input asp-for="SellerId" class="form-control" />
                 <span asp-validation-for="SellerId" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
-                <label  class="control-label">Tara</label>
+                <label asp-for="SellerName" class="control-label"></label>
                 <input asp-for="SellerName" class="form-control" />
                 <span asp-validation-for="SellerName" class="text-danger"></span>
             </div>
@@ -30,12 +30,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="SellerCountry" class="control-label"></label>
-                @Html.DropDownList("SellerCountry", new SelectList(ViewBag.Countries, "Value", "Text"),new {})
+                <input asp-for="SellerCountry" class="form-control" />
                 <span asp-validation-for="SellerCountry" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SellerDistrict" class="control-label"></label>
-                @Html.DropDownList("SellerDistrict", new SelectList(ViewBag.Districts, "Value", "Text"),new {@class="form-control"})
+                <input asp-for="SellerDistrict" class="form-control" />
                 <span asp-validation-for="SellerDistrict" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,7 +58,7 @@
                 <input asp-for="BlackListMotive" class="form-control" />
                 <span asp-validation-for="BlackListMotive" class="text-danger"></span>
             </div>
-          @*  <div class="form-group">
+            <div class="form-group">
                 <label asp-for="BlackListTime" class="control-label"></label>
                 <input asp-for="BlackListTime" class="form-control" />
                 <span asp-validation-for="BlackListTime" class="text-danger"></span>
@@ -67,9 +67,9 @@
                 <label asp-for="BlackListWho" class="control-label"></label>
                 <input asp-for="BlackListWho" class="form-control" />
                 <span asp-validation-for="BlackListWho" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -79,3 +79,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

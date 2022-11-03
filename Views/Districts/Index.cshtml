@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<StockApp.Models.DistrictsModel>
-
+ 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -32,12 +32,12 @@
                 @Html.DisplayFor(modelItem => item.DistrictName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CountryId)
+                        @Html.DisplayFor(modelItem => item.CountryId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.DistrictId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.DistrictId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.DistrictId  })
             </td>
         </tr>
 }

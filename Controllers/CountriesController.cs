@@ -59,10 +59,10 @@ namespace StockApp.Controllers
                      countriesRepository.InsertCountry(model);
 
                 }
-                 
-                // return RedirectToAction(nameof(Index));
-                return View("Index");
-              //  MessageBox.Show("Tara a fost adaugata.");
+
+              
+                return RedirectToAction("Index");
+      
             }
             catch
             {

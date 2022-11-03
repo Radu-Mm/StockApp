@@ -79,11 +79,12 @@ namespace StockApp.Repository
             } 
         }
 
-        public void DeleteCategory (CategoriesModel model)
+        public void DeleteCategory(Guid ID)
         {
-            var dboject = _DBContext.Categories.FirstOrDefault(x => x.CategoryId == model.CategoryId);
+            var dboject = _DBContext.Categories.FirstOrDefault(x => x.CategoryId == ID);
             if (dboject != null)
             {
+ 
                 _DBContext.Categories.Remove(dboject);
                 _DBContext.SaveChanges();
             }

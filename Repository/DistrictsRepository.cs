@@ -19,6 +19,7 @@ namespace StockApp.Repository
             _DBContext = dbContext;
         }
 
+
         private DistrictsModel MapDBObjectToModel(District dboject)
         {
             var model = new DistrictsModel();
@@ -27,6 +28,7 @@ namespace StockApp.Repository
                 model.DistrictName = dboject.DistrictName;
                 model.DistrictId = dboject.DistrictId;
                 model.CountryId = dboject.CountryId;
+     
                  
             }
             return model;
@@ -40,6 +42,7 @@ namespace StockApp.Repository
                 dbobject.DistrictName = model.DistrictName;
                 dbobject.DistrictId = model.DistrictId;
                 dbobject.CountryId = model.CountryId;
+ 
             }
             return dbobject;
         }
@@ -89,6 +92,7 @@ namespace StockApp.Repository
                 _DBContext.SaveChanges();
             }
         }
+        
 
     }
 }

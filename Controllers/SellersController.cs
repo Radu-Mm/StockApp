@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
@@ -10,28 +11,46 @@ namespace StockApp.Controllers
     {
 
         private SellersRepository sellersRepository;
+        private CountriesRepository countriesRepository;
+        private DistrictsRepository districtsRepository;
 
         public SellersController(ApplicationDbContext dbContext)
         {
             sellersRepository = new SellersRepository(dbContext);
+            countriesRepository = new CountriesRepository(dbContext);
+            districtsRepository = new DistrictsRepository(dbContext);
         }
 
         // GET: SellersController
         public ActionResult Index()
         {
-            return View();
+            var list = sellersRepository.GetAllSellers();
+            var getCountries = countriesRepository.GetAllCountries();
+            var getDistricts = districtsRepository.GetAllDistricts();
+
+            return View(list);
         }
 
         // GET: SellersController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = sellersRepository.GetSellerByID(id);
+            return View("SellerDetails", model);
         }
 
         // GET: SellersController/Create
         public ActionResult Create()
         {
-            return View();
+            var countries = countriesRepository.GetAllCountries();
+            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
+            ViewBag.Countries = getCountries;
+
+            var districts = districtsRepository.GetAllDistricts();
+            var getDistricts = districts.Select(x => new SelectListItem(x.DistrictName, x.DistrictId.ToString()));
+            ViewBag.Districts = getDistricts;
+
+            return View("SellersCreate");
+ 
         }
 
         // POST: SellersController/Create
@@ -49,54 +68,74 @@ namespace StockApp.Controllers
                     sellersRepository.InsertSeller(model);
 
                 }
-                // return RedirectToAction(nameof(Index));
-                return View("Index");
+         
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("SellersCreate");
             }
         }
 
         // GET: SellersController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            sellersRepository.GetSellerByID(id);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: SellersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new SellersModel();
+            var task = TryUpdateModelAsync(model);
+            task.Wait();
+            if (task.Result)
+            {
+                sellersRepository.UpdateSeller(model);
+            }
+       
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("SellerEdit");
             }
         }
 
         // GET: SellersController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = sellersRepository.GetSellerByID(id);
+            return View("SellerDelete", model);
         }
 
         // POST: SellersController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
+            var countries = countriesRepository.GetAllCountries();
+            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
+            ViewBag.Countries = getCountries;
+
+            var districts = districtsRepository.GetAllDistricts();
+            var getDistricts = districts.Select(x => new SelectListItem(x.DistrictName, x.DistrictId.ToString()));
+            ViewBag.Districts = getDistricts;
+
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                sellersRepository.DeleteSeller(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete", id);
             }
         }
     }

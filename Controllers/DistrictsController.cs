@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using System.Runtime.CompilerServices;
 
 namespace StockApp.Controllers
 {
@@ -11,9 +14,10 @@ namespace StockApp.Controllers
 
 
         private DistrictsRepository districtsRepository;
-
+        private CountriesRepository countriesRepository; 
         public DistrictsController(ApplicationDbContext dbContext)
         {
+            countriesRepository = new CountriesRepository(dbContext);
             districtsRepository = new DistrictsRepository(dbContext);
         }
 
@@ -21,20 +25,31 @@ namespace StockApp.Controllers
         // GET: DistrictsController
         public ActionResult Index()
         {
-            var list = districtsRepository.GetAllDistricts();
+            var countries = countriesRepository.GetAllCountries();
+            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
+            ViewBag.Countries = getCountries;
+
+
+            var list = districtsRepository.GetAllDistricts()  ;
             return View(list);
         }
 
         // GET: DistrictsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = districtsRepository.GetDistrictByID(id);
+            return View("DistrictDetails", model);
         }
 
         // GET: DistrictsController/Create
         public ActionResult Create()
         {
-            return View("DistrictCreate");
+            var countries = countriesRepository.GetAllCountries() ;
+            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
+            ViewBag.Countries = getCountries;
+      
+
+            return View("DistrictCreate");   
         }
 
         // POST: DistrictsController/Create
@@ -51,34 +66,44 @@ namespace StockApp.Controllers
                 {
                     districtsRepository.InsertDistrict(model);
                 }
-                // return RedirectToAction(nameof(Index));
-                return View("DistrictCreate");
- 
+                
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
         // GET: DistrictsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = districtsRepository.GetDistrictByID(id);
+            return View("DistrictEdit", model);
         }
 
         // POST: DistrictsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new DistrictsModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    districtsRepository.UpdateDistrict(model);
+
+                }
+
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Edit", id);
             }
         }
 

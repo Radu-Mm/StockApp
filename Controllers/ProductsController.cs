@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
@@ -10,16 +11,19 @@ namespace StockApp.Controllers
     {
 
         private ProductsRepository productsRepository;
+        private CategoriesRepository categoriesRepository;
 
         public ProductsController(ApplicationDbContext dbContext)
         {
+            categoriesRepository = new CategoriesRepository(dbContext);
             productsRepository = new ProductsRepository(dbContext);
         }
 
         // GET: ProductsController
         public ActionResult Index()
         {
-            return View();
+            var list = productsRepository.GetAllProducts(); 
+            return View(list);
         }
 
         // GET: ProductsController/Details/5
@@ -31,7 +35,11 @@ namespace StockApp.Controllers
         // GET: ProductsController/Create
         public ActionResult Create()
         {
-            return View();
+            var categories = categoriesRepository.GetAllCategories();
+            SelectList getCategories = new SelectList(categories.Select(x => new SelectListItem() { Text = x.CategoyName, Value = x.CategoryId.ToString() }));
+            ViewBag.Countries = getCategories;
+            return View("ProductsCreate");
+       
         }
 
         // POST: ProductsController/Create

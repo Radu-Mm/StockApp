@@ -103,9 +103,9 @@ namespace StockApp.Repository
             }
         }
 
-        public void DeleteSeller(SellersModel model)
+        public void DeleteSeller(Guid ID)
         {
-            var dboject = _DBContext.Sellers.FirstOrDefault(x => x.SellerId == model.SellerId);
+            var dboject = _DBContext.Sellers.FirstOrDefault(x => x.SellerId == ID);
             if (dboject != null)
             {
                 _DBContext.Sellers.Remove(dboject);

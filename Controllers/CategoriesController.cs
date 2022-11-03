@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using System.ComponentModel;
 
 namespace StockApp.Controllers
 {
@@ -19,13 +20,15 @@ namespace StockApp.Controllers
         // GET: CategoriesController
         public ActionResult Index()
         {
-            return View();
+            var list = categoryRepository.GetAllCategories();
+            return View(list);
         }
 
         // GET: CategoriesController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = categoryRepository.GetCategoryByID(id);
+            return View("CategoryDetails", model);
         }
 
         // GET: CategoriesController/Create
@@ -49,8 +52,7 @@ namespace StockApp.Controllers
                     categoryRepository.InsertCategory(model);
 
                 }
-                // return RedirectToAction(nameof(Index));
-                return View("Index");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -59,44 +61,58 @@ namespace StockApp.Controllers
         }
 
         // GET: CategoriesController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = categoryRepository.GetCategoryByID(id);
+            return View("CategoryEdit", model);
         }
 
         // POST: CategoriesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new CategoriesModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    categoryRepository.UpdateCategory(model);
+
+                }
+
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Edit", id);
             }
         }
 
         // GET: CategoriesController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = categoryRepository.GetCategoryByID(id);
+            return View("CategoryDelete", model);
         }
 
         // POST: CategoriesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
+
             try
             {
-                return RedirectToAction(nameof(Index));
+                categoryRepository.DeleteCategory(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete", id);
             }
         }
     }

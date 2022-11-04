@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StockApp.Models.DistrictsModel>
+﻿@model IEnumerable<StockApp.ViewModel.DistrictsViewModel>
  
 @{
     ViewData["Title"] = "Index";
@@ -19,7 +19,7 @@
                 @Html.DisplayNameFor(model => model.DistrictName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CountryId)
+                @Html.DisplayNameFor(model => model.CountryName)
             </th>
             <th></th>
         </tr>
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.DistrictName)
             </td>
             <td>
-                        @Html.DisplayFor(modelItem => item.CountryId)
+                        @Html.DisplayFor(modelItem => item.CountryName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new {  id=item.DistrictId  }) |

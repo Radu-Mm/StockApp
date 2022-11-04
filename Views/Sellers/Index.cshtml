@@ -1,4 +1,4 @@
-﻿@model IEnumerable<StockApp.Models.SellersModel>
+﻿@model IEnumerable<StockApp.ViewModel.SellersViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -23,10 +23,10 @@
                 @Html.DisplayNameFor(model => model.SellerUic)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SellerCountry)
+                @Html.DisplayNameFor(model => model.CountryName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SellerDistrict)
+                @Html.DisplayNameFor(model => model.DistrictName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SellerAddress)
@@ -62,10 +62,10 @@
                 @Html.DisplayFor(modelItem => item.SellerUic)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SellerCountry)
+                    @Html.DisplayFor(modelItem => item.CountryName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SellerDistrict)
+                    @Html.DisplayFor(modelItem => item.DistrictName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SellerAddress)

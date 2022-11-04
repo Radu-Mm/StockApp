@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using System.Diagnostics.Metrics;
 
 namespace StockApp.Controllers
 {
@@ -18,19 +19,21 @@ namespace StockApp.Controllers
         // GET: DocumentTypeController
         public ActionResult Index()
         {
-            return View();
+            var list = documentTypeRepository.GetAllDocumentTypes();
+            return View(list);
         }
 
         // GET: DocumentTypeController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = documentTypeRepository.GetDocumentTypeByID(id);
+            return View("DocumentTypeDetails", model);
         }
 
         // GET: DocumentTypeController/Create
         public ActionResult Create()
         {
-            return View();
+            return View("DocumentTypeCreate");
         }
 
         // POST: DocumentTypeController/Create
@@ -48,54 +51,66 @@ namespace StockApp.Controllers
                     documentTypeRepository.InsertDocumentType(model);
 
                 }
-                // return RedirectToAction(nameof(Index));
-                return View("Index");
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("");
             }
         }
 
         // GET: DocumentTypeController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = documentTypeRepository.GetDocumentTypeByID(id);
+            return View("DocumentTypeEdit", model);
         }
 
         // POST: DocumentTypeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new DocumentTypeModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    documentTypeRepository.UpdateDocumentType(model);
+
+                }
+
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("DocumentTypeEdit");
             }
         }
 
         // GET: DocumentTypeController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = documentTypeRepository.GetDocumentTypeByID(id);
+            return View("DocumentTypeDelete", model);
         }
 
         // POST: DocumentTypeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                documentTypeRepository.DeleteDocumentType(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete", id);
             }
         }
     }

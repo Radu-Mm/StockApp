@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<StockApp.ViewModel.DocumentsViewModel>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,90 @@
 
 <h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+    @*        <th>
+                @Html.DisplayNameFor(model => model.DocId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.DocumentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SellerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocTotalValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocTotalValueWithoutVat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DocTotalValueVat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsValid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhenValidated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValidatedBy)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+        @*    <td>
+                @Html.DisplayFor(modelItem => item.DocId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DocumentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocTotalValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocTotalValueWithoutVat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DocTotalValueVat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsValid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhenValidated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ValidatedBy)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.DocId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.DocId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.DocId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

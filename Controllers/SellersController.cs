@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using StockApp.ViewModel;
 
 namespace StockApp.Controllers
 {
@@ -25,10 +26,13 @@ namespace StockApp.Controllers
         public ActionResult Index()
         {
             var list = sellersRepository.GetAllSellers();
-            var getCountries = countriesRepository.GetAllCountries();
-            var getDistricts = districtsRepository.GetAllDistricts();
+            var viewmodellist = new List<SellersViewModel>();
+            foreach (var sellers in list)
+            {
+                viewmodellist.Add(new SellersViewModel(sellers, countriesRepository, districtsRepository));
+            }
 
-            return View(list);
+            return View(viewmodellist);
         }
 
         // GET: SellersController/Details/5
@@ -80,8 +84,14 @@ namespace StockApp.Controllers
         // GET: SellersController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            sellersRepository.GetSellerByID(id);
-            return RedirectToAction(nameof(Index));
+            var model = sellersRepository.GetSellerByID(id);
+            var districts = districtsRepository.GetAllDistricts();
+            var countries = countriesRepository.GetAllCountries();
+            var getDistricts = districts.Select(x => new SelectListItem(x.DistrictName, x.DistrictId.ToString()));
+            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
+            ViewBag.Countries = getCountries;
+            ViewBag.Districts = getDistricts;
+            return View("SellerEdit", model);
         }
 
         // POST: SellersController/Edit/5
@@ -91,7 +101,7 @@ namespace StockApp.Controllers
         {
             try
             {
-                var model = new SellersModel();
+            var model = new SellersModel();
             var task = TryUpdateModelAsync(model);
             task.Wait();
             if (task.Result)

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using StockApp.ViewModel;
 using System.Runtime.CompilerServices;
 
 namespace StockApp.Controllers
@@ -25,13 +26,16 @@ namespace StockApp.Controllers
         // GET: DistrictsController
         public ActionResult Index()
         {
-            var countries = countriesRepository.GetAllCountries();
-            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
-            ViewBag.Countries = getCountries;
 
+            var list = districtsRepository.GetAllDistricts();
+            var viewmodellist = new List<DistrictsViewModel>();
+            foreach (var district in list)
+            {
+                viewmodellist.Add(new DistrictsViewModel(district,countriesRepository));
+            }
 
-            var list = districtsRepository.GetAllDistricts()  ;
-            return View(list);
+            return View(viewmodellist);
+
         }
 
         // GET: DistrictsController/Details/5
@@ -79,6 +83,9 @@ namespace StockApp.Controllers
         public ActionResult Edit(Guid id)
         {
             var model = districtsRepository.GetDistrictByID(id);
+            var countries = countriesRepository.GetAllCountries();
+            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
+            ViewBag.Countries = getCountries;
             return View("DistrictEdit", model);
         }
 
@@ -108,23 +115,25 @@ namespace StockApp.Controllers
         }
 
         // GET: DistrictsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = districtsRepository.GetDistrictByID(id);
+            return View("DistrictDelete", model);
         }
 
         // POST: DistrictsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                districtsRepository.DeleteDistrict(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete", id);
             }
         }
     }

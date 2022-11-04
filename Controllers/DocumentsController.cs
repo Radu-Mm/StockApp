@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using StockApp.ViewModel;
 
 namespace StockApp.Controllers
 {
@@ -10,51 +12,69 @@ namespace StockApp.Controllers
     {
 
         private DocumentsRepository documentsRepository;
+        private SellersRepository sellersRepository;
+        private DocumentTypeRepository documentTypeRepository;
 
         public DocumentsController(ApplicationDbContext dbContext)
         {
             documentsRepository = new DocumentsRepository(dbContext);
+            sellersRepository = new SellersRepository(dbContext);
+            documentTypeRepository = new DocumentTypeRepository(dbContext);
         }
 
         // GET: DocumentsController
         public ActionResult Index()
         {
-            return View();
+            var list = documentsRepository.GetAllDocuments();
+            var viewmodellist = new List<DocumentsViewModel>();
+            foreach (var documents in list)
+            {
+                viewmodellist.Add(new DocumentsViewModel(documents, sellersRepository, documentTypeRepository));
+            }
+
+            return View(viewmodellist);
+            
         }
 
         // GET: DocumentsController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: DocumentsController/Create
         public ActionResult Create()
         {
-            return View();
+            var sellers = sellersRepository.GetAllSellers();
+            var getSellers = sellers.Select(x => new SelectListItem(x.SellerName, x.SellerId.ToString()));
+            ViewBag.Sellers = getSellers;
+
+            var docs = documentTypeRepository.GetAllDocumentTypes();
+            var getdocs = docs.Select(x => new SelectListItem(x.DocType, x.DocTypeId.ToString()));
+            ViewBag.docs = getdocs;
+
+
+            return View("DocumentsCreate");
+
         }
 
-        // POST: DocumentsController/Create
+        // POST: SellersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
+ 
+
             try
             {
                 var model = new DocumentsModel();
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
-                if (task.Result)
-                {
+                //if (task.Result)
+                //{
                     documentsRepository.InsertDocument(model);
 
-                }
-                // return RedirectToAction(nameof(Index));
-                return View("Index");
+              //  }
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DocumentsCreate");
             }
         }
 

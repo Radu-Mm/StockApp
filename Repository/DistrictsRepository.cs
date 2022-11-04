@@ -83,9 +83,9 @@ namespace StockApp.Repository
             }
         }
 
-        public void DeleteDistrict(DistrictsModel model)
+        public void DeleteDistrict(Guid ID)
         {
-            var dboject = _DBContext.Districts.FirstOrDefault(x => x.DistrictId == model.DistrictId);
+            var dboject = _DBContext.Districts.FirstOrDefault(x => x.DistrictId == ID);
             if (dboject != null)
             {
                 _DBContext.Districts.Remove(dboject);

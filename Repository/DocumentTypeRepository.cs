@@ -76,11 +76,12 @@ namespace StockApp.Repository
             }
         }
 
-        public void DeleteDocumentType(DocumentTypeModel model)
+        public void DeleteDocumentType(Guid ID)
         {
-            var dboject = _DBContext.DocumentTypes.FirstOrDefault(x => x.DocTypeId == model.DocTypeId);
+            var dboject = _DBContext.DocumentTypes.FirstOrDefault(x => x.DocTypeId == ID);
             if (dboject != null)
             {
+
                 _DBContext.DocumentTypes.Remove(dboject);
                 _DBContext.SaveChanges();
             }

@@ -13,14 +13,14 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
+     @*       <div class="form-group">
                 <label asp-for="DocId" class="control-label"></label>
                 <input asp-for="DocId" class="form-control" />
                 <span asp-validation-for="DocId" class="text-danger"></span>
             </div>*@
             <div class="form-group">
                 <label asp-for="DocTypeId" class="control-label"></label>
-                <input asp-for="DocTypeId" class="form-control" />
+                @Html.DropDownList("DocTypeId", new SelectList(ViewBag.docs , "Value", "Text"),new {@class="form-control"})
                 <span asp-validation-for="DocTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -35,10 +35,10 @@
             </div>
             <div class="form-group">
                 <label asp-for="SellerId" class="control-label"></label>
-                <input asp-for="SellerId" class="form-control" />
+                @Html.DropDownList("SellerId", new SelectList(@ViewBag.Sellers, "Value", "Text"),new {@class="form-control"})
                 <span asp-validation-for="SellerId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+           @* <div class="form-group">
                 <label asp-for="DocTotalValue" class="control-label"></label>
                 <input asp-for="DocTotalValue" class="form-control" />
                 <span asp-validation-for="DocTotalValue" class="text-danger"></span>
@@ -52,22 +52,22 @@
                 <label asp-for="DocTotalValueVat" class="control-label"></label>
                 <input asp-for="DocTotalValueVat" class="form-control" />
                 <span asp-validation-for="DocTotalValueVat" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsValid" /> @Html.DisplayNameFor(model => model.IsValid)
                 </label>
             </div>
-            <div class="form-group">
+         @*   <div class="form-group">
                 <label asp-for="WhenValidated" class="control-label"></label>
                 <input asp-for="WhenValidated" class="form-control" />
                 <span asp-validation-for="WhenValidated" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+          @*  <div class="form-group">
                 <label asp-for="ValidatedBy" class="control-label"></label>
                 <input asp-for="ValidatedBy" class="form-control" />
                 <span asp-validation-for="ValidatedBy" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -79,3 +79,6 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

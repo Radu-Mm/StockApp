@@ -30,12 +30,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="SellerCountry" class="control-label"></label>
-                <input asp-for="SellerCountry" class="form-control" />
+                @Html.DropDownList("CountryId", new SelectList(@ViewBag.Countries, "Value", "Text"),new {@class="form-control"})
                 <span asp-validation-for="SellerCountry" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SellerDistrict" class="control-label"></label>
-                <input asp-for="SellerDistrict" class="form-control" />
+                @Html.DropDownList("DistrictId", new SelectList(@ViewBag.Districts, "Value", "Text"),new {@class="form-control"})
                 <span asp-validation-for="SellerDistrict" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,7 +58,7 @@
                 <input asp-for="BlackListMotive" class="form-control" />
                 <span asp-validation-for="BlackListMotive" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group"hidden>
                 <label asp-for="BlackListTime" class="control-label"></label>
                 <input asp-for="BlackListTime" class="form-control" />
                 <span asp-validation-for="BlackListTime" class="text-danger"></span>

@@ -5,6 +5,11 @@ namespace StockApp.Models.DBObjects
 {
     public partial class DocumentDetail
     {
+        public DocumentDetail()
+        {
+            Usages = new HashSet<Usage>();
+        }
+
         public Guid DocDetId { get; set; }
         public Guid DocId { get; set; }
         public Guid ProductId { get; set; }
@@ -15,5 +20,6 @@ namespace StockApp.Models.DBObjects
 
         public virtual Document Doc { get; set; } = null!;
         public virtual Product Product { get; set; } = null!;
+        public virtual ICollection<Usage> Usages { get; set; }
     }
 }

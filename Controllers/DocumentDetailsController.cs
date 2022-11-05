@@ -27,6 +27,8 @@ namespace StockApp.Controllers
         // GET: DocumentDetailsController
         public ActionResult Index()
         {
+ 
+
             var list = documentDetailsRepository.GetAllDocumentDetails();
             var viewmodellist = new List<DocumentDetailsViewModel>();
             foreach (var document in list)
@@ -69,12 +71,14 @@ namespace StockApp.Controllers
                 var model = new DocumentDetailsModel();
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
-             //   if (task.Result)
-             //   {
-                    documentDetailsRepository.InsertDocumentDetails(model);
+                //   if (task.Result)
+                //   {
+                documentDetailsRepository.InsertDocumentDetails(model);
+      
+                    documentDetailsRepository.updateQuantityRemaining(model);
+          
+                //   }
 
-             //   }
-                
                 return RedirectToAction("Index");
             }
             catch

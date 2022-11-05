@@ -1,6 +1,7 @@
 ﻿using StockApp.Data;
 using StockApp.Models.DBObjects;
 using StockApp.Models;
+using StockApp.ViewModel;
 
 namespace StockApp.Repository
 {
@@ -69,6 +70,7 @@ namespace StockApp.Repository
             }
             return list;
         }
+
 
         public DocumentsModel GetDocumentByID(Guid ID)
         {

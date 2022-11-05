@@ -11,7 +11,7 @@ namespace StockApp.ViewModel
         public decimal Unitprice { get; set; }
         public double Vat { get; set; }
         public double Quantity { get; set; }
-        public decimal  QuantityRemaining { get; set; }
+        public double QuantityRemaining { get; set; }
 
         public string Document { get; set; }
         public string Product { get; set; }
@@ -28,6 +28,7 @@ namespace StockApp.ViewModel
             this.Unitprice = model.Unitprice;
             this.Vat = model.Vat;
             this.Quantity = model.Quantity;
+            this.QuantityRemaining = model.QuantityRemaining;
            
             
         }

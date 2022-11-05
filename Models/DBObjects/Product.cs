@@ -8,6 +8,7 @@ namespace StockApp.Models.DBObjects
         public Product()
         {
             DocumentDetails = new HashSet<DocumentDetail>();
+            Usages = new HashSet<Usage>();
         }
 
         public Guid ProductId { get; set; }
@@ -17,5 +18,6 @@ namespace StockApp.Models.DBObjects
 
         public virtual Category? ProductcategoryNavigation { get; set; }
         public virtual ICollection<DocumentDetail> DocumentDetails { get; set; }
+        public virtual ICollection<Usage> Usages { get; set; }
     }
 }

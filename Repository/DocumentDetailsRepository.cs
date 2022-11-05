@@ -1,6 +1,8 @@
 ﻿using StockApp.Data;
 using StockApp.Models.DBObjects;
 using StockApp.Models;
+using System.ComponentModel;
+using StockApp.ViewModel;
 
 namespace StockApp.Repository
 {
@@ -46,11 +48,12 @@ namespace StockApp.Repository
                 dbobject.Unitprice = model.Unitprice;
                 dbobject.Vat = model.Vat;
                 dbobject.Quantity = model.Quantity;
-                dbobject.QuantityRemaining = model.Quantity;
+                dbobject.QuantityRemaining = model.QuantityRemaining;
             }
             return dbobject;
         }
 
+   
         public List<DocumentDetailsModel> GetAllDocumentDetails()
         {
             var list = new List<DocumentDetailsModel>();
@@ -62,6 +65,9 @@ namespace StockApp.Repository
             return list;
         }
 
+
+
+
         public DocumentDetailsModel GetDocumentDetailByID(Guid ID)
         {
             return MapDBObjectToModel(_DBContext.DocumentDetails.FirstOrDefault(x => x.DocDetId == ID));
@@ -72,6 +78,21 @@ namespace StockApp.Repository
             model.DocDetId = Guid.NewGuid();
             _DBContext.DocumentDetails.Add(MapModelToDBOject(model));
             _DBContext.SaveChanges();
+        }
+
+        public void updateQuantityRemaining(DocumentDetailsModel model)
+        {
+            var dbobject = _DBContext.DocumentDetails.FirstOrDefault(x => x.DocDetId == model.DocDetId);
+            if (dbobject != null)
+            {
+                dbobject.DocDetId = model.DocDetId;
+                dbobject.Quantity = model.Quantity;
+                dbobject.QuantityRemaining = model.Quantity;
+               
+                
+
+                _DBContext.SaveChanges();
+            }
         }
 
         public void UpdateDocumentDetails(DocumentDetailsModel model)

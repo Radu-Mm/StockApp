@@ -1,0 +1,60 @@
+﻿@model IEnumerable<StockApp.ViewModel.UsageViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+  @*          <th>
+                @Html.DisplayNameFor(model => model.UsageId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.UsageType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.docNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+   @*         <td>
+                @Html.DisplayFor(modelItem => item.UsageId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.UsageType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.docNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.UsageId  }) |
+                @Html.ActionLink("Details", "Details", new {  id=item.UsageId  }) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.UsageId  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -31,6 +31,8 @@ namespace StockApp.Data
         public virtual DbSet<DocumentType> DocumentTypes { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
         public virtual DbSet<Seller> Sellers { get; set; } = null!;
+        public virtual DbSet<Usage> Usages { get; set; } = null!;
+        public virtual DbSet<UsageType> UsageTypes { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -252,9 +254,7 @@ namespace StockApp.Data
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
-                entity.Property(e => e.QuantityRemaining)
-                    .HasColumnType("numeric(18, 4)")
-                    .HasColumnName("quantityRemaining");
+                entity.Property(e => e.QuantityRemaining).HasColumnName("quantityRemaining");
 
                 entity.Property(e => e.Unitprice)
                     .HasColumnType("numeric(18, 4)")
@@ -298,7 +298,10 @@ namespace StockApp.Data
                     .ValueGeneratedNever()
                     .HasColumnName("productID");
 
-                entity.Property(e => e.ProductInUse).HasColumnName("productInUse");
+                entity.Property(e => e.ProductInUse)
+                    .IsRequired()
+                    .HasColumnName("productInUse")
+                    .HasDefaultValueSql("((1))");
 
                 entity.Property(e => e.ProductName)
                     .HasMaxLength(200)
@@ -368,6 +371,52 @@ namespace StockApp.Data
                     .HasForeignKey(d => d.SellerDistrict)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Sellers__sellerD__66603565");
+            });
+
+            modelBuilder.Entity<Usage>(entity =>
+            {
+                entity.ToTable("usage");
+
+                entity.Property(e => e.UsageId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("usageID");
+
+                entity.Property(e => e.DocdetId).HasColumnName("docdetID");
+
+                entity.Property(e => e.ProductId).HasColumnName("productID");
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
+                entity.Property(e => e.UsageTypeId).HasColumnName("usageTypeID");
+
+                entity.HasOne(d => d.Docdet)
+                    .WithMany(p => p.Usages)
+                    .HasForeignKey(d => d.DocdetId)
+                    .HasConstraintName("FK__usage__docdetID__1DB06A4F");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.Usages)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK__usage__productID__1EA48E88");
+
+                entity.HasOne(d => d.UsageType)
+                    .WithMany(p => p.Usages)
+                    .HasForeignKey(d => d.UsageTypeId)
+                    .HasConstraintName("FK__usage__usageType__1CBC4616");
+            });
+
+            modelBuilder.Entity<UsageType>(entity =>
+            {
+                entity.ToTable("UsageType");
+
+                entity.Property(e => e.UsageTypeId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("usageTypeID");
+
+                entity.Property(e => e.UsageType1)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("UsageType");
             });
 
             OnModelCreatingPartial(modelBuilder);

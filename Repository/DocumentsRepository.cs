@@ -103,9 +103,9 @@ namespace StockApp.Repository
             }
         }
 
-        public void DeleteDocument(DocumentsModel model)
+        public void DeleteDocument(Guid ID)
         {
-            var dboject = _DBContext.Documents.FirstOrDefault(x => x.DocId == model.DocId);
+            var dboject = _DBContext.Documents.FirstOrDefault(x => x.DocId == ID);
             if (dboject != null)
             {
                 _DBContext.Documents.Remove(dboject);

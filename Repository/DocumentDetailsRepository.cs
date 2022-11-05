@@ -46,7 +46,7 @@ namespace StockApp.Repository
                 dbobject.Unitprice = model.Unitprice;
                 dbobject.Vat = model.Vat;
                 dbobject.Quantity = model.Quantity;
-                dbobject.QuantityRemaining = model.QuantityRemaining;
+                dbobject.QuantityRemaining = model.Quantity;
             }
             return dbobject;
         }
@@ -91,9 +91,9 @@ namespace StockApp.Repository
             }
         }
 
-        public void DeleteDocumentDetails(DocumentDetailsModel model)
+        public void DeleteDocumentDetails(Guid ID)
         {
-            var dboject = _DBContext.DocumentDetails.FirstOrDefault(x => x.DocDetId == model.DocDetId);
+            var dboject = _DBContext.DocumentDetails.FirstOrDefault(x => x.DocDetId == ID);
             if (dboject != null)
             {
                 _DBContext.DocumentDetails.Remove(dboject);

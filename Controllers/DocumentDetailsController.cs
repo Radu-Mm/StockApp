@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using StockApp.ViewModel;
 
 namespace StockApp.Controllers
 {
@@ -11,28 +13,49 @@ namespace StockApp.Controllers
 
 
         private DocumentDetailsRepository documentDetailsRepository;
+        private DocumentsRepository documentsRepository;
+        private ProductsRepository productsRepository;
 
         public DocumentDetailsController(ApplicationDbContext dbContext)
         {
             documentDetailsRepository = new DocumentDetailsRepository(dbContext);
+            documentsRepository = new DocumentsRepository(dbContext);
+            productsRepository = new ProductsRepository(dbContext);
         }
 
 
         // GET: DocumentDetailsController
         public ActionResult Index()
         {
-            return View();
+            var list = documentDetailsRepository.GetAllDocumentDetails();
+            var viewmodellist = new List<DocumentDetailsViewModel>();
+            foreach (var document in list)
+            {
+                viewmodellist.Add(new DocumentDetailsViewModel(document, documentsRepository, productsRepository));
+            }
+
+            return View(viewmodellist);
         }
 
         // GET: DocumentDetailsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = documentDetailsRepository.GetDocumentDetailByID(id);
+            return View("DocumentDetDetails", model);
         }
 
         // GET: DocumentDetailsController/Create
         public ActionResult Create()
         {
+            var products = productsRepository.GetAllProducts();
+            var getProducts = products.Select(x => new SelectListItem(x.ProductName, x.ProductId.ToString()));
+            ViewBag.Products = getProducts;
+
+            var documents = documentsRepository.GetAllDocuments();
+            var getDocuments = documents.Select(x => new SelectListItem(x.DocNumber, x.DocId.ToString()));
+            ViewBag.Documents = getDocuments;
+
+
             return View("DocumentDetailsCreate");
         }
 
@@ -46,59 +69,78 @@ namespace StockApp.Controllers
                 var model = new DocumentDetailsModel();
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
-                if (task.Result)
-                {
+             //   if (task.Result)
+             //   {
                     documentDetailsRepository.InsertDocumentDetails(model);
 
-                }
-                // return RedirectToAction(nameof(Index));
-                return View("Index");
+             //   }
+                
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DocumentDetailsCreate");
             }
         }
 
         // GET: DocumentDetailsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = documentDetailsRepository.GetDocumentDetailByID(id);
+            var products = productsRepository.GetAllProducts();
+            var getProducts = products.Select(x => new SelectListItem(x.ProductName, x.ProductId.ToString()));
+            ViewBag.Products = getProducts;
+
+            var documents = documentsRepository.GetAllDocuments();
+            var getDocuments = documents.Select(x => new SelectListItem(x.DocNumber, x.DocId.ToString()));
+            ViewBag.Documents = getDocuments;
+
+            return View("DocumentDetailsEdit", model);
         }
 
         // POST: DocumentDetailsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new DocumentDetailsModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+              //  if (task.Result)
+              //  {
+                    documentDetailsRepository.UpdateDocumentDetails(model);
+              //  }
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("DocumentDetailsEdit");
             }
         }
 
         // GET: DocumentDetailsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = documentDetailsRepository.GetDocumentDetailByID(id);
+            return View("DocumentDetailsDelete", model);
         }
 
         // POST: DocumentDetailsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                documentDetailsRepository.DeleteDocumentDetails(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete");
             }
         }
     }

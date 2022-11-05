@@ -176,7 +176,6 @@ namespace StockApp.Data
                 entity.HasOne(d => d.Country)
                     .WithMany(p => p.Districts)
                     .HasForeignKey(d => d.CountryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Districts__count__628FA481");
             });
 
@@ -299,14 +298,19 @@ namespace StockApp.Data
                     .ValueGeneratedNever()
                     .HasColumnName("productID");
 
-                entity.Property(e => e.ProductCategory).HasColumnName("productCategory");
-
                 entity.Property(e => e.ProductInUse).HasColumnName("productInUse");
 
                 entity.Property(e => e.ProductName)
                     .HasMaxLength(200)
                     .IsUnicode(false)
                     .HasColumnName("productName");
+
+                entity.Property(e => e.Productcategory).HasColumnName("productcategory");
+
+                entity.HasOne(d => d.ProductcategoryNavigation)
+                    .WithMany(p => p.Products)
+                    .HasForeignKey(d => d.Productcategory)
+                    .HasConstraintName("fk_prod_category");
             });
 
             modelBuilder.Entity<Seller>(entity =>
@@ -357,7 +361,6 @@ namespace StockApp.Data
                 entity.HasOne(d => d.SellerCountryNavigation)
                     .WithMany(p => p.Sellers)
                     .HasForeignKey(d => d.SellerCountry)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Sellers__sellerC__656C112C");
 
                 entity.HasOne(d => d.SellerDistrictNavigation)

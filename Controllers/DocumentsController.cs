@@ -36,6 +36,13 @@ namespace StockApp.Controllers
             
         }
 
+        // GET: SellersController/Details/5
+        public ActionResult Details(Guid id)
+        {
+            var model = documentsRepository.GetDocumentByID(id);
+            return View("DocumentDetails", model);
+        }
+
         // GET: DocumentsController/Details/5
         public ActionResult Create()
         {
@@ -64,11 +71,11 @@ namespace StockApp.Controllers
                 var model = new DocumentsModel();
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
-                //if (task.Result)
-                //{
+                if (task.Result)
+                {
                     documentsRepository.InsertDocument(model);
 
-              //  }
+                }
 
                 return RedirectToAction("Index");
             }
@@ -79,44 +86,62 @@ namespace StockApp.Controllers
         }
 
         // GET: DocumentsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = documentsRepository.GetDocumentByID(id);
+            var sellers = sellersRepository.GetAllSellers();
+            var doctypes = documentTypeRepository.GetAllDocumentTypes();
+            var getSellers = sellers.Select(x => new SelectListItem(x.SellerName, x.SellerId.ToString()));
+            var getDocTypes = doctypes.Select(x => new SelectListItem(x.DocType, x.DocTypeId.ToString()));
+            ViewBag.Sellers = getSellers;
+            ViewBag.DocTypes = getDocTypes;
+            return View("DocumentEdit", model);
+             
         }
 
         // POST: DocumentsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new DocumentsModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    documentsRepository.UpdateDocument(model);
+                }
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("DocumentEdit");
             }
         }
 
         // GET: DocumentsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = documentsRepository.GetDocumentByID(id);
+            return View("DocumentDelete", model);
         }
 
         // POST: DocumentsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                documentsRepository.DeleteDocument(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete");
             }
         }
     }

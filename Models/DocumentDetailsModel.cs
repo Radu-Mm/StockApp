@@ -10,7 +10,7 @@ namespace StockApp.Models
         public decimal Unitprice { get; set; }
         public double Vat { get; set; }
         public double Quantity { get; set; }
-        public decimal? QuantityRemaining { get; set; }
+        public double QuantityRemaining { get; set; }
 
         public virtual Document Doc { get; set; } = null!;
         public virtual Product Product { get; set; } = null!;

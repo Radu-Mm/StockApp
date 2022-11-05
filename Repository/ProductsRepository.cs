@@ -26,7 +26,7 @@ namespace StockApp.Repository
             {
                 model.ProductId = dbobject.ProductId;
                 model.ProductName = dbobject.ProductName;
-                model.ProductCategory = dbobject.ProductCategory;
+                model.ProductCategory = dbobject.Productcategory;
                 model.ProductInUse = dbobject.ProductInUse;
             }
             return model;
@@ -39,8 +39,21 @@ namespace StockApp.Repository
             {
                 dbobject.ProductId = model.ProductId;
                 dbobject.ProductName = model.ProductName;
-                dbobject.ProductCategory = model.ProductCategory;
+                dbobject.Productcategory = model.ProductCategory;
                 dbobject.ProductInUse = model.ProductInUse;
+            }
+            return dbobject;
+        }
+
+        private Product MapModelToDBOjectInsert(ProductsModel model)
+        {
+            var dbobject = new Product();
+            if (model != null)
+            {
+                dbobject.ProductId = model.ProductId;
+                dbobject.ProductName = model.ProductName;
+                dbobject.Productcategory = model.ProductCategory;
+                dbobject.ProductInUse = true;
             }
             return dbobject;
         }
@@ -64,7 +77,7 @@ namespace StockApp.Repository
         public void InsertProduct(ProductsModel model)
         {
             model.ProductId = Guid.NewGuid();
-            _DBContext.Products.Add(MapModelToDBOject(model));
+            _DBContext.Products.Add(MapModelToDBOjectInsert(model));
             _DBContext.SaveChanges();
         }
 
@@ -75,16 +88,16 @@ namespace StockApp.Repository
             {
                 dbobject.ProductId = model.ProductId;
                 dbobject.ProductName = model.ProductName;
-                dbobject.ProductCategory = model.ProductCategory;
+                dbobject.Productcategory = model.ProductCategory;
                 dbobject.ProductInUse = model.ProductInUse;
 
                 _DBContext.SaveChanges();
             }
         }
 
-        public void DeleteProduct(ProductsModel model)
+        public void DeleteProduct(Guid ID)
         {
-            var dboject = _DBContext.Products.FirstOrDefault(x => x.ProductId == model.ProductId);
+            var dboject = _DBContext.Products.FirstOrDefault(x => x.ProductId == ID);
             if (dboject != null)
             {
                 _DBContext.Products.Remove(dboject);

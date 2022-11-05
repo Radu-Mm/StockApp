@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace StockApp.Models.DBObjects
 {
@@ -20,9 +19,6 @@ namespace StockApp.Models.DBObjects
         public string? SellerPhone { get; set; }
         public bool BlackListed { get; set; }
         public string? BlackListMotive { get; set; }
-
-        [DisplayFormat(DataFormatString = "0:MM/dd/yyyy")]
-        [DataType(DataType.Date)]
         public DateTime? BlackListTime { get; set; }
         public string? BlackListWho { get; set; }
 

@@ -1,0 +1,84 @@
+﻿@model StockApp.Models.DocumentsModel
+
+@{
+    ViewData["Title"] = "DocumentEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>DocumentEdit</h1>
+
+<h4>DocumentsModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <label asp-for="DocId" class="control-label"></label>
+                <input asp-for="DocId" class="form-control" />
+                <span asp-validation-for="DocId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocTypeId" class="control-label"></label>
+                @Html.DropDownList("DocTypeId", new SelectList(@ViewBag.DocTypes, "Value", "Text"),new {@class="form-control"})
+                <span asp-validation-for="DocTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocNumber" class="control-label"></label>
+                <input asp-for="DocNumber" class="form-control" />
+                <span asp-validation-for="DocNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocDate" class="control-label"></label>
+                <input asp-for="DocDate" class="form-control" />
+                <span asp-validation-for="DocDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellerId" class="control-label"></label>
+                @Html.DropDownList("SellerId", new SelectList(@ViewBag.Sellers, "Value", "Text"),new {@class="form-control"})
+                <span asp-validation-for="SellerId" class="text-danger"></span>
+            </div>
+      @*      <div class="form-group">
+                <label asp-for="DocTotalValue" class="control-label"></label>
+                <input asp-for="DocTotalValue" class="form-control" />
+                <span asp-validation-for="DocTotalValue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocTotalValueWithoutVat" class="control-label"></label>
+                <input asp-for="DocTotalValueWithoutVat" class="form-control" />
+                <span asp-validation-for="DocTotalValueWithoutVat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DocTotalValueVat" class="control-label"></label>
+                <input asp-for="DocTotalValueVat" class="form-control" />
+                <span asp-validation-for="DocTotalValueVat" class="text-danger"></span>
+            </div>*@
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsValid" /> @Html.DisplayNameFor(model => model.IsValid)
+                </label>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="WhenValidated" class="control-label"></label>
+                <input asp-for="WhenValidated" class="form-control" />
+                <span asp-validation-for="WhenValidated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ValidatedBy" class="control-label"></label>
+                <input asp-for="ValidatedBy" class="form-control" />
+                <span asp-validation-for="ValidatedBy" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

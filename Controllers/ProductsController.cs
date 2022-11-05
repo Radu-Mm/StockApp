@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
+using StockApp.ViewModel;
 
 namespace StockApp.Controllers
 {
@@ -22,24 +23,33 @@ namespace StockApp.Controllers
         // GET: ProductsController
         public ActionResult Index()
         {
-            var list = productsRepository.GetAllProducts(); 
-            return View(list);
+            var list = productsRepository.GetAllProducts();
+            var viewmodellist = new List<ProductsViewModel>();
+            foreach (var products in list)
+            {
+                viewmodellist.Add(new ProductsViewModel(products, categoriesRepository));
+            }
+
+            return View(viewmodellist);
         }
 
         // GET: ProductsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+
+            var model = productsRepository.GetProductByID(id);
+            return View("ProductDetails", model);
         }
 
         // GET: ProductsController/Create
         public ActionResult Create()
         {
             var categories = categoriesRepository.GetAllCategories();
-            SelectList getCategories = new SelectList(categories.Select(x => new SelectListItem() { Text = x.CategoyName, Value = x.CategoryId.ToString() }));
-            ViewBag.Countries = getCategories;
+            var getCategories = categories.Select(x => new SelectListItem(x.CategoyName, x.CategoryId.ToString()));
+            ViewBag.Categories = getCategories;
+
             return View("ProductsCreate");
-       
+
         }
 
         // POST: ProductsController/Create
@@ -57,54 +67,68 @@ namespace StockApp.Controllers
                     productsRepository.InsertProduct(model);
 
                 }
-                // return RedirectToAction(nameof(Index));
-                return View("Index");
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("ProductsCreate");
             }
         }
 
         // GET: ProductsController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = productsRepository.GetProductByID(id);
+            var categories = categoriesRepository.GetAllCategories();
+            var getCategories = categories.Select(x => new SelectListItem(x.CategoyName, x.CategoryId.ToString()));
+            ViewBag.Categories = getCategories;
+            return View("ProductEdit", model);
         }
 
         // POST: ProductsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new ProductsModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    productsRepository.UpdateProduct(model);
+                }
+
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("ProductEdit");
             }
         }
 
         // GET: ProductsController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = productsRepository.GetProductByID(id);
+            return View("ProductDelete", model);
         }
 
         // POST: ProductsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                productsRepository.DeleteProduct(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Delete");
             }
         }
     }

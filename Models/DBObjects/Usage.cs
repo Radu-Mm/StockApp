@@ -10,9 +10,11 @@ namespace StockApp.Models.DBObjects
         public Guid DocdetId { get; set; }
         public Guid ProductId { get; set; }
         public double Quantity { get; set; }
+        public Guid Docid { get; set; }
 
-        public virtual DocumentDetail Docdet { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual UsageType UsageType { get; set; }
+        public virtual Document? Doc { get; set; }
+        public virtual DocumentDetail? Docdet { get; set; }
+        public virtual Product? Product { get; set; }
+        public virtual UsageType? UsageType { get; set; }
     }
 }

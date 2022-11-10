@@ -30,6 +30,7 @@ namespace StockApp.Repository
                 model.DocdetId = dboject.DocdetId;
                 model.ProductId = dboject.ProductId;
                 model.Quantity = dboject.Quantity;
+                model.Docid = dboject.Docid;
             }
             return model;
         }
@@ -44,6 +45,7 @@ namespace StockApp.Repository
                 dbobject.DocdetId = model.DocdetId;
                 dbobject.ProductId = model.ProductId;
                 dbobject.Quantity = model.Quantity;
+                dbobject.Docid = model.Docid;
             }
             return dbobject;
         }
@@ -81,6 +83,7 @@ namespace StockApp.Repository
                 dbobject.DocdetId = model.DocdetId;
                 dbobject.ProductId = model.ProductId;
                 dbobject.Quantity = model.Quantity;
+                dbobject.Docid = model.Docid;
                 _DBContext.SaveChanges();
             }
         }

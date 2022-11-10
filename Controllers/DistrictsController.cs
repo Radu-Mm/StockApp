@@ -45,6 +45,8 @@ namespace StockApp.Controllers
             return View("DistrictDetails", model);
         }
 
+     
+
         // GET: DistrictsController/Create
         public ActionResult Create()
         {

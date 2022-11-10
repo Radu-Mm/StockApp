@@ -383,6 +383,8 @@ namespace StockApp.Data
 
                 entity.Property(e => e.DocdetId).HasColumnName("docdetID");
 
+                entity.Property(e => e.Docid).HasColumnName("docid");
+
                 entity.Property(e => e.ProductId).HasColumnName("productID");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
@@ -393,6 +395,11 @@ namespace StockApp.Data
                     .WithMany(p => p.Usages)
                     .HasForeignKey(d => d.DocdetId)
                     .HasConstraintName("FK__usage__docdetID__1DB06A4F");
+
+                entity.HasOne(d => d.Doc)
+                    .WithMany(p => p.Usages)
+                    .HasForeignKey(d => d.Docid)
+                    .HasConstraintName("FK__usage__docid__1F98B2C1");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Usages)

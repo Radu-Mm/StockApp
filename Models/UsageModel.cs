@@ -8,5 +8,7 @@
         public Guid ProductId { get; set; }
         public double Quantity { get; set; }
 
+        public Guid Docid { get; set; }
+
     }
 }

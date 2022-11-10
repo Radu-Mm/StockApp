@@ -71,11 +71,11 @@ namespace StockApp.Controllers
                 var model = new DocumentsModel();
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
-                if (task.Result)
-                {
+             //   if (task.Result)
+              //  {
                     documentsRepository.InsertDocument(model);
 
-                }
+               // }
 
                 return RedirectToAction("Index");
             }

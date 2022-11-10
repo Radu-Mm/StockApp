@@ -92,7 +92,8 @@ namespace StockApp.Repository
                 _DBContext.SaveChanges();
             }
         }
-        
 
+
+  
     }
 }

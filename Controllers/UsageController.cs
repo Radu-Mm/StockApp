@@ -56,6 +56,10 @@ namespace StockApp.Controllers
             var getDocuments = documents.Select(x => new SelectListItem(x.DocNumber, x.DocId.ToString()));
             ViewBag.Documents = getDocuments;
 
+            //var documentDetails = documentDetailsRepository.GetAllDocumentDetails();
+            //var getdocumentDetails = documentDetails.Select(x => new SelectListItem(x.DocId, x.DocDetId));
+            //ViewBag.DocumentDetails = getDocuments;
+
             var usagetype = usageTypeRepository.GetAllUsageTypes();
             var getUsageType = usagetype.Select(x => new SelectListItem(x.UsageType1, x.UsageTypeId.ToString()));
             ViewBag.UsageType = getUsageType;

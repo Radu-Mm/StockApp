@@ -13,7 +13,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    @*        <div class="form-group">
+      @*      <div class="form-group">
                 <label asp-for="UsageId" class="control-label"></label>
                 <input asp-for="UsageId" class="form-control" />
                 <span asp-validation-for="UsageId" class="text-danger"></span>
@@ -25,18 +25,23 @@
             </div>
             <div class="form-group">
                 <label asp-for="DocdetId" class="control-label"></label>
-                @Html.DropDownList("DocdetId", new SelectList(ViewBag.Documents, "Value", "Text"),new {@class="form-control"})
+                @Html.DropDownList("DocdetId", new SelectList(ViewBag.DocumentDetails, "Value", "Text"),new {@class="form-control"})
                 <span asp-validation-for="DocdetId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ProductId" class="control-label"></label>
-                @Html.DropDownList("ProductId", new SelectList(ViewBag.Products, "Value", "Text"),new {@class="form-control"})
+                <input asp-for="ProductId" class="form-control" />
                 <span asp-validation-for="ProductId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
                 <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Docid" class="control-label"></label>
+                <input asp-for="Docid" class="form-control" />
+                <span asp-validation-for="Docid" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

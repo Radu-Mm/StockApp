@@ -14,6 +14,7 @@ namespace StockApp.Models
         [DataType(DataType.Date)]
         public DateTime DocDate { get; set; }
         public Guid SellerId { get; set; }
+         
         public decimal? DocTotalValue { get; set; }
         public decimal? DocTotalValueWithoutVat { get; set; }
         public decimal? DocTotalValueVat { get; set; }

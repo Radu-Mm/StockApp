@@ -11,7 +11,7 @@ namespace StockApp.ViewModel
         public Guid DocdetId { get; set; }
         public Guid ProductId { get; set; }
         public double Quantity { get; set; }
-
+        public Guid DocID { get; set; }
         public string UsageType { get; set; }
         public string ProductName { get; set; }
 
@@ -25,7 +25,7 @@ namespace StockApp.ViewModel
             this.UsageTypeId = model.UsageTypeId;
             var usagetypevar = usagetype.GetUsageTypeByID(UsageTypeId);
             this.UsageType = usagetypevar.UsageType1;
-
+            this.DocID = model.Docid;
             this.DocdetId = model.DocdetId;
             var docdetidvar = docdet.GetDocumentDetailByID(DocdetId);
             this.docid = docdetidvar.DocId;

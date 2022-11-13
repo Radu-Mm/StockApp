@@ -9,7 +9,6 @@ namespace StockApp.Models
         public Guid ProductId { get; set; }
         public decimal Unitprice { get; set; }
         public double Vat { get; set; }
-        
         public double Quantity { get; set; }
         public double QuantityRemaining { get; set; }
 

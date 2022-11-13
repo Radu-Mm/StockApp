@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Nomenclator Tari</h1>
 
-<p>
-    <a asp-action="Create">Adaugati o tara.</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -31,12 +29,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CountryName)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CountryId  }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.CountryId  }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.CountryId  })
+            <td> 
+                    @Html.ActionLink("Modificare", "Edit", new { id=item.CountryId  } , new {@class="btn btn-primary"})
+                    @* @Html.ActionLink("Detalii", "Details", new {  id=item.CountryId  }) |*@
+                    @Html.ActionLink("Stergere", "Delete", new {  id=item.CountryId  }, new {@class="btn btn-primary"})
             </td>
         </tr>
 }
     </tbody>
 </table>
+<h3></h3>
+<p>
+    <a asp-action="Create" class="btn btn-primary" >Adaugare</a>
+</p>

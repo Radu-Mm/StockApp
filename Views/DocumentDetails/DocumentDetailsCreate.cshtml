@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DocumentDetailsCreate</h1>
+<h1>Detalii Documente</h1>
 
-<h4>DocumentDetailsModel</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label asp-for="Unitprice" class="control-label"></label>
                 @Html.TextBoxFor(m => m.Unitprice,
-                new { @type = "number", @class = "form-control", @min = "0" })
+                new { @type = "number", @class = "form-control", @min = "1" })
                 <span asp-validation-for="Unitprice" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -43,7 +43,7 @@
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
                 @Html.TextBoxFor(m => m.Quantity,
-                new { @type = "number", @class = "form-controlv", @min = "0" })
+                new { @type = "number", @class = "form-control", @min = "1" })
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group" hidden>

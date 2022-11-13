@@ -1,59 +1,67 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+   
+      
+ 
+      
+   
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - StockApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/StockApp.styles.css" asp-append-version="true" />
+   
 </head>
+
+ 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">StockApp</a>
+    <header style="background-color:black;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light text-capitalize text-white border-bottom box-shadow mb-3">
+            <div class="container-fluid" style="color:white">
+                <a class="navbar-brand" asp-area="" asp-controller="Home"  style="color:white" asp-action="Index">StockApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1" style="color:white" >
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index" style="color:white">Home</a>
                         </li>
     @*                    <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>*@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Countries" asp-action="Index">Tari</a>
+                            <a class="nav-link" asp-area="" asp-controller="Countries" asp-action="Index" style="color:white">Tari</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Districts" asp-action="Index">District</a>
+                            <a class="nav-link" asp-area="" asp-controller="Districts" asp-action="Index" style="color:white">District</a>
+                        </li>
+                        <li class="nav-item" >
+                            <a class ="nav-link" asp-area=""  asp-controller="Sellers" asp-action="Index" style="color:white"  >Furnizori</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Sellers" asp-action="Index">Furnizori</a>
+                            <a class="nav-link" asp-area="" asp-controller="Categories" asp-action="Index" style="color:white">Categorii</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Index">Categorii</a>
+                            <a class="nav-link" asp-area="" asp-controller="Products" asp-action="Index" style="color:white">Produse</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Produse</a>
+                            <a class="nav-link" asp-area="" asp-controller="DocumentType" asp-action="Index" style="color:white">Tipuri de documente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DocumentType" asp-action="Index">Tipuri de documente</a>
+                            <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index" style="color:white">Documente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Documents" asp-action="Index">Documente</a>
+                            <a class="nav-link" asp-area="" asp-controller="DocumentDetails" asp-action="Index" style="color:white">Detalii Documente</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DocumentDetails" asp-action="Index">Detalii Documente</a>
+                            <a class="nav-link" asp-area="" asp-controller="UsageType" asp-action="Index" style="color:white">Tip Iesire</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UsageType" asp-action="Index">Tip Iesire</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Usage" asp-action="Index">Iesiri</a>
+                            <a class="nav-link" asp-area="" asp-controller="Usage" asp-action="Index" style="color:white">Iesiri</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -61,7 +69,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container"  >
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -69,7 +77,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - StockApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+           &copy; 2022 - StockApp  </a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

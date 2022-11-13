@@ -8,6 +8,9 @@ namespace StockApp.Models
 
         public Guid DocId { get; set; }
         public Guid DocTypeId { get; set; }
+
+        [StringLength(30, ErrorMessage = "Campul nu poate fi mai mare de 30 de caractere")]
+        [Display(Name = "Numar Document")]
         public string DocNumber { get; set; } = null!;
 
         [DisplayFormat(DataFormatString="0:MM/dd/yyyy")]

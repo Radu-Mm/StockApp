@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DistrictCreate</h1>
+<h1>Adaugati un Judet / District</h1>
 
-<h4>DistrictsModel</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,19 +24,20 @@
                 <span asp-validation-for="DistrictName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CountryId"  name="Country Name"class="control-label"></label>
-                @Html.DropDownList("CountryId", new SelectList(@ViewBag.Countries, "Value", "Text"), "", new {})
+                <label asp-for="CountryId"  name="Country Name"class="control-label">Tara</label>
+                @Html.DropDownList("CountryId", new SelectList(@ViewBag.Countries, "Value", "Text"), "", new  {@class="form-control"})
                 <span asp-validation-for="CountryId" class="text-danger"></span>
             </div>
+            <h3></h3>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Creare" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<h3></h3>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary" >Inapoi</a>
 </div>
 
 @section Scripts {

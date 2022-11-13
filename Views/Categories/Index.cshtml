@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Nomenclator Categorii</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -19,7 +17,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.CategoyName)
             </th>
-            <th>
+            <th hidden>
                 @Html.DisplayNameFor(model => model.CategoryDescription)
             </th>
             <th></th>
@@ -34,15 +32,19 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CategoyName)
             </td>
-            <td>
+            <td hidden>
                 @Html.DisplayFor(modelItem => item.CategoryDescription)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.CategoryId  }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.CategoryId  }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.CategoryId  })
+                    @Html.ActionLink("Modificare", "Edit", new {  id=item.CategoryId  }, new {@class="btn btn-primary"}) 
+                    @Html.ActionLink("Detalii", "Details", new {  id=item.CategoryId  } , new {@class="btn btn-primary"})
+                    @Html.ActionLink("Stergere", "Delete", new {  id=item.CategoryId  }, new {@class="btn btn-primary"})
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugare</a>
+</p>

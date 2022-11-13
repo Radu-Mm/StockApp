@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>CountryDelete</h1>
+<h1>Stergere Tara</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3></h3>
 <div>
-    <h4>CountriesModel</h4>
+    <h4></h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2" hidden>
@@ -25,9 +25,12 @@
             @Html.DisplayFor(model => model.CountryName)
         </dd>
     </dl>
-    
+    <h4></h4>
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Stergere" class="btn btn-danger" /> 
+        <div>
+            <h4></h4>
+            <a asp-action="Index" class="btn-primary">Inapoi</a>
+        </div>
     </form>
 </div>

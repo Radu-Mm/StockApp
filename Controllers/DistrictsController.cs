@@ -6,6 +6,7 @@ using StockApp.Data;
 using StockApp.Models;
 using StockApp.Repository;
 using StockApp.ViewModel;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace StockApp.Controllers
@@ -22,19 +23,38 @@ namespace StockApp.Controllers
             districtsRepository = new DistrictsRepository(dbContext);
         }
 
+        public List<DistrictsViewModel> GetDistrictViewModelValues()
+        {
+            var list = districtsRepository.GetAllDistricts();
+            var viewmodellist = new List<DistrictsViewModel>();
+            foreach (var district in list)
+            {
+                viewmodellist.Add(new DistrictsViewModel(district, countriesRepository));
+            }
+            return viewmodellist;
+        }
+
+
+        // Start View-uri 
+        public List<DistrictsViewModel> GetDistrictViewModelValuesByID(Guid ID)
+        {
+            var list = districtsRepository.GetDistrictByID(ID);
+            var viewmodellist = new List<DistrictsViewModel>();
+          
+            viewmodellist.Add(new DistrictsViewModel(list, countriesRepository));
+            
+            return viewmodellist;
+        }
+
+        // End View-uri
 
         // GET: DistrictsController
         public ActionResult Index()
         {
 
-            var list = districtsRepository.GetAllDistricts();
-            var viewmodellist = new List<DistrictsViewModel>();
-            foreach (var district in list)
-            {
-                viewmodellist.Add(new DistrictsViewModel(district,countriesRepository));
-            }
+            var list = GetDistrictViewModelValues(); 
 
-            return View(viewmodellist);
+            return View(list);
 
         }
 
@@ -42,10 +62,18 @@ namespace StockApp.Controllers
         public ActionResult Details(Guid id)
         {
             var model = districtsRepository.GetDistrictByID(id);
-            return View("DistrictDetails", model);
-        }
+            var countries = countriesRepository.GetAllCountries();
+            var getCountries = countries.Select(x => new SelectListItem(x.CountryName, x.CountryId.ToString()));
+            ViewBag.Countries = getCountries;
 
-     
+
+            //var model = GetDistrictViewModelValuesByID(id);
+
+            return View("DistrictDetails",model);
+
+
+
+        }
 
         // GET: DistrictsController/Create
         public ActionResult Create()

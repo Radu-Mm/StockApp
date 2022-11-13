@@ -17,6 +17,13 @@ a {
   border-color: #1861ac;
 }
 
+
+.btn-ptIndex {
+    color: #fff;
+    background-color: #98BBCF;
+    border-color: #000305;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
   background-color: #1b6ec2;

@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Nomenclator Judete/District</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 @if (Model != null)
 {
 <table class="table">
@@ -19,7 +17,9 @@
                 @Html.DisplayNameFor(model => model.DistrictName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CountryName)
+                <label>Tara</label>
+              
+             
             </th>
             <th></th>
         </tr>
@@ -35,15 +35,20 @@
                         @Html.DisplayFor(modelItem => item.CountryName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.DistrictId  }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.DistrictId  }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.DistrictId  })
+                        @Html.ActionLink("Modificare", "Edit", new {  id=item.DistrictId },  new  {@class="btn btn-primary"} )  
+              @*  @Html.ActionLink("Detalii", "Details", new {  id=item.DistrictId  }) |*@
+                        @Html.ActionLink("Stergere", "Delete", new {  id=item.DistrictId  },  new  {@class="btn btn-primary"})
             </td>
         </tr>
 }
-    </tbody>
+    </tbody>   
 </table>
+    <h3></h3>
+    <p>
+        <a asp-action="Create" class="btn btn-primary" >Adaugare</a>
+    </p>
 }
+
         else
         {
             <p>Empty Model</p>

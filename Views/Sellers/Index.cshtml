@@ -5,11 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Nomenclator Furnizori</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -17,35 +14,43 @@
                 @Html.DisplayNameFor(model => model.SellerId)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.SellerName)
+               @* @Html.DisplayNameFor(model => model.SellerName)*@
+                <label>Furnizor</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SellerUic)
+               @* @Html.DisplayNameFor(model => model.SellerUic)*@
+                <label>CUI</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CountryName)
+               @* @Html.DisplayNameFor(model => model.CountryName)*@
+                <label>Tara</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DistrictName)
+                @*@Html.DisplayNameFor(model => model.DistrictName)*@
+                <label>Judet</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SellerAddress)
+              @*  @Html.DisplayNameFor(model => model.SellerAddress)*@
+                <label>Adresa</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SellerPhone)
+              @*  @Html.DisplayNameFor(model => model.SellerPhone)*@
+                <label>Telefon</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BlackListed)
+           @*     @Html.DisplayNameFor(model => model.BlackListed)*@
+                <label>Inactiv</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BlackListMotive)
+              @*  @Html.DisplayNameFor(model => model.BlackListMotive)*@
+                <label>Motiv Inactiv</label>
             </th>
 @*            <th>
                 @Html.DisplayNameFor(model => model.BlackListTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BlackListWho)*@
-            </th>
+                @Html.DisplayNameFor(model => model.BlackListWho)
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -87,11 +92,16 @@
                 @Html.DisplayFor(modelItem => item.BlackListWho)
             </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.SellerId }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.SellerId  }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.SellerId  })
+                    @Html.ActionLink("Modificare", "Edit", new {  id=item.SellerId }, new {@class="btn btn-primary"}) 
+                    @Html.ActionLink("Detalii", "Details", new {  id=item.SellerId  }, new {@class="btn btn-primary"}) 
+                    @Html.ActionLink("Stergere", "Delete", new {  id=item.SellerId  }, new {@class="btn btn-primary"})
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugare</a>
+</p>

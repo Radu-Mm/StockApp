@@ -18,54 +18,62 @@
             @Html.DisplayFor(model => model.SellerId)
         </dd>*@
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SellerName)
+            <label>Furnizor</label>
+           @* @Html.DisplayNameFor(model => model.SellerName)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SellerName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SellerUic)
+            <label>Nr. Unic Inregistrare</label>
+           @* @Html.DisplayNameFor(model => model.SellerUic)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SellerUic)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SellerCountry)
+            <label>Tara</label>
+          @*  @Html.DisplayNameFor(model => model.SellerCountry)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SellerCountry)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SellerDistrict)
+            <label>Judet/District</label>
+         @*   @Html.DisplayNameFor(model => model.SellerDistrict)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SellerDistrict)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SellerAddress)
+            <label>Adresa Furnizor</label>
+            @*@Html.DisplayNameFor(model => model.SellerAddress)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SellerAddress)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SellerPhone)
+            <label>Telefon</label>
+           @* @Html.DisplayNameFor(model => model.SellerPhone)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.SellerPhone)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BlackListed)
+            <label>Inactiv</label>
+@*            @Html.DisplayNameFor(model => model.BlackListed)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BlackListed)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BlackListMotive)
+            <label>Motiv Inactiv</label>
+ @*           @Html.DisplayNameFor(model => model.BlackListMotive)*@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BlackListMotive)
         </dd>
-        <dt class = "col-sm-2">
+     @*   <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.BlackListTime)
         </dt>
         <dd class = "col-sm-10">
@@ -76,10 +84,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.BlackListWho)
-        </dd>
+        </dd>*@
     </dl>
 </div>
+<h3></h3>
 <div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.SellerId  }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Modificare", "Edit", new {  id = Model.SellerId  }, new{ @class = "btn btn-primary"}) 
+    <h3></h3>
+    <a asp-action="Index" class="btn btn-primary" >Inapoi</a>
 </div>

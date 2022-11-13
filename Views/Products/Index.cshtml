@@ -16,7 +16,7 @@
             <th>
                 <label>Produs</label>
                @* @Html.DisplayNameFor(model => model.ProductName)*@
-            </th>
+            </th> 
             <th>
                 <label>Categorie</label>
                 @*@Html.DisplayNameFor(model => model.CategoryName)*@
@@ -43,9 +43,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ProductInUse)
             </td>
-            <td>
+            <td align="right"> 
                     @Html.ActionLink("Modificare", "Edit", new {  id=item.ProductId  }, new {@class="btn btn-primary"}) 
-                    @Html.ActionLink("Detalii", "Details", new {  id=item.ProductId  }, new {@class="btn btn-primary"})
+                 @*   @Html.ActionLink("Detalii", "Details", new {  id=item.ProductId  }, new {@class="btn btn-primary"})*@
                     @Html.ActionLink("Stergere", "Delete", new {  id=item.ProductId  }, new {@class="btn btn-primary"})
             </td>
         </tr>

@@ -46,8 +46,8 @@ namespace StockApp.Controllers
         // GET: DocumentsController/Details/5
         public ActionResult Create()
         {
-            var sellers = sellersRepository.GetAllSellers();
-            var getSellers = sellers.Select(x => new SelectListItem(x.SellerName, x.SellerId.ToString()));
+            var sellers = sellersRepository.GetAllSellers();    
+            var getSellers = sellers.Where(x => x.BlackListed == false).Select(x => new SelectListItem(x.SellerName, x.SellerId.ToString())); ;
             ViewBag.Sellers = getSellers;
 
             var docs = documentTypeRepository.GetAllDocumentTypes();

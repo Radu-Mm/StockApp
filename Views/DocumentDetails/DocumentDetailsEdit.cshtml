@@ -30,22 +30,25 @@
             </div>
             <div class="form-group">
                 <label asp-for="Unitprice" class="control-label"></label>
-                <input asp-for="Unitprice" class="form-control" />
+                @Html.TextBoxFor(m => m.Unitprice,
+                new { @type = "number", @class = "form-control", @min = "0.01" })
                 <span asp-validation-for="Unitprice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Vat" class="control-label"></label>
-                <input asp-for="Vat" class="form-control" />
+                @Html.TextBoxFor(m => m.Vat,
+                new { @type = "number", @class = "form-control", @min = "0" })
                 <span asp-validation-for="Vat" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
+                @Html.TextBoxFor(m => m.Quantity,
+                new { @type = "number", @class = "form-control", @min = "1" })
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group" hidden>
                 <label asp-for="QuantityRemaining" class="control-label"></label>
-                <input asp-for="QuantityRemaining" class="form-control" />
+                <input asp-for="QuantityRemaining" value="m.Quantity" class="form-control" />
                 <span asp-validation-for="QuantityRemaining" class="text-danger"></span>
             </div>
             <div class="form-group">

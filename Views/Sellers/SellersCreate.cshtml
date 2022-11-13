@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>SellersCreate</h1>
+<h1>Adaugare Furnizor</h1>
 
-<h4>SellersModel</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -48,7 +48,7 @@
                 <input asp-for="SellerPhone" class="form-control" />
                 <span asp-validation-for="SellerPhone" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+@*            <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="BlackListed" /> @Html.DisplayNameFor(model => model.BlackListed)
                 </label>
@@ -57,7 +57,7 @@
                 <label asp-for="BlackListMotive" class="control-label"></label>
                 <input asp-for="BlackListMotive" class="form-control" />
                 <span asp-validation-for="BlackListMotive" class="text-danger"></span>
-            </div>
+            </div>*@
           @*  <div class="form-group">
                 <label asp-for="BlackListTime" class="control-label"></label>
                 <input asp-for="BlackListTime" class="form-control" />
@@ -68,14 +68,15 @@
                 <input asp-for="BlackListWho" class="form-control" />
                 <span asp-validation-for="BlackListWho" class="text-danger"></span>
             </div>*@
+            <h3></h3>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<h3></h3>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary" >Inapoi </a>
 </div>
 

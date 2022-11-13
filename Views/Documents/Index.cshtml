@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Documente Intrari</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -17,35 +15,42 @@
                 @Html.DisplayNameFor(model => model.DocId)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.DocumentType)
+                <label>Tip Document</label>
+             @*   @Html.DisplayNameFor(model => model.DocumentType)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DocNumber)
+                <label>Nr. Document</label>
+   @*             @Html.DisplayNameFor(model => model.DocNumber)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DocDate)
+                <label>Data Document</label>
+             @*   @Html.DisplayNameFor(model => model.DocDate)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SellerName)
+                <label>Furnizor</label>
+        @*        @Html.DisplayNameFor(model => model.SellerName)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DocTotalValue)
+                <label>Valoare</label>
+           @*     @Html.DisplayNameFor(model => model.DocTotalValue)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DocTotalValueWithoutVat)
+                <label>Valoare\TVA</label>
+             @*   @Html.DisplayNameFor(model => model.DocTotalValueWithoutVat)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DocTotalValueVat)
+                <label>Valoare TVA</label>
+              @*  @Html.DisplayNameFor(model => model.DocTotalValueVat)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsValid)
-            </th>
-            <th>
+                <label>Valid</label>
+            </th>@*
+            @*<th>
                 @Html.DisplayNameFor(model => model.WhenValidated)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ValidatedBy)
-            </th>
+                </th>*@
             <th></th>
         </tr>
     </thead>
@@ -80,18 +85,23 @@
             <td>
                 @Html.DisplayFor(modelItem => item.IsValid)
             </td>
-            <td>
+  @*          <td>
                 @Html.DisplayFor(modelItem => item.WhenValidated)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ValidatedBy)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.DocId  }) |
-                @Html.ActionLink("Details", "Details", new {  id=item.DocId  }) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.DocId })
+            </td>*@
+                <td align="right">
+                    @Html.ActionLink("Adaugare", "Edit", new {  id=item.DocId  }, new{@class="btn btn-primary"}) 
+                @*    @Html.ActionLink("Detalii", "Details", new {  id=item.DocId  }, new{@class="btn btn-primary"})*@
+                    @Html.ActionLink("Stergere", "Delete", new {  id=item.DocId }, new{@class="btn btn-primary"})
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<h3></h3>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugare</a>
+</p>

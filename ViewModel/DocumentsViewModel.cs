@@ -22,6 +22,7 @@ namespace StockApp.ViewModel
         public virtual Seller Seller { get; set; } = null!;
 
 
+        public DateOnly DocdateWTime { get; set; }
         public string DocumentType { get; set; } = null!;
         public string SellerName { get; set; } = null!;
         public DocumentsViewModel(DocumentsModel model, SellersRepository seller, DocumentTypeRepository doctype)
@@ -32,6 +33,9 @@ namespace StockApp.ViewModel
             this.DocumentType = getdoctype.DocType;
             this.DocNumber = model.DocNumber;
             this.DocDate = model.DocDate;
+ 
+
+
             this.SellerId = model.SellerId;
             var getseller = seller.GetSellerByID(SellerId);
             this.SellerName = getseller.SellerName;

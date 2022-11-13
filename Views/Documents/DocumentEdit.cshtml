@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DocumentEdit</h1>
+<h1>Modifica Document Intrare</h1>
 
-<h4>DocumentsModel</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -54,7 +54,7 @@
                 <span asp-validation-for="DocTotalValueVat" class="text-danger"></span>
             </div>*@
             <div class="form-group form-check">
-                <label class="form-check-label">
+                <label class="form-check-label">  
                     <input class="form-check-input" asp-for="IsValid" /> @Html.DisplayNameFor(model => model.IsValid)
                 </label>
             </div>
@@ -68,15 +68,16 @@
                 <input asp-for="ValidatedBy" class="form-control" />
                 <span asp-validation-for="ValidatedBy" class="text-danger"></span>
             </div>*@
+            <h3></h3>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<h3></h3>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Inapoi</a>
 </div>
 
 @section Scripts {

@@ -13,11 +13,11 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-@*            <div class="form-group">
+            <div class="form-group" hidden>
                 <label asp-for="DocDetId" class="control-label"></label>
                 <input asp-for="DocDetId" class="form-control" />
                 <span asp-validation-for="DocDetId" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="DocId" class="control-label"></label>
                 @Html.DropDownList("DocId", new SelectList(@ViewBag.Documents, "Value", "Text"), "", new { @class="form-control"})
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label asp-for="Unitprice" class="control-label"></label>
                 @Html.TextBoxFor(m => m.Unitprice,
-                new { @type = "number", @class = "form-control", @min = "1" })
+                new { @type = "number", @class = "form-control", @min = "0.01" })
                 <span asp-validation-for="Unitprice" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -58,7 +58,15 @@
     </div>
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
 

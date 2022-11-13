@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DocumentDelete</h1>
+<h1>Sterge Document</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3></h3>
 <div>
     <h4>DocumentsModel</h4>
     <hr />
@@ -19,49 +19,50 @@
             @Html.DisplayFor(model => model.DocId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DocType)
+            <label>Tip Document</label>
+       
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DocType)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DocNumber)
+            <label>Nr Document</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DocNumber)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DocDate)
+            <label>Data Document</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DocDate)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Seller)
+            <label>Furnizor</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Seller)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DocTotalValue)
+            <label>Valoare Total</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DocTotalValue)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DocTotalValueWithoutVat)
+            <label>Valoare fara TVA</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DocTotalValueWithoutVat)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DocTotalValueVat)
+            <label>Valoare TVA</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DocTotalValueVat)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsValid)
+            <label>Valid</label>
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IsValid)
@@ -79,9 +80,10 @@
             @Html.DisplayFor(model => model.ValidatedBy)
         </dd>*@
     </dl>
-    
+    <h3></h3>
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Sterge" class="btn btn-danger" /> 
+        <h3></h3>
+        <a asp-action="Index" class="btn btn-primary">Inapoi</a>
     </form>
 </div>

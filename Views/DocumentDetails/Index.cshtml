@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Detalii Document</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -17,22 +15,22 @@
                 @Html.DisplayNameFor(model => model.DocDetId)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Document)
+               <label>Nr Document</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product)
+                <label>Produs</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Unitprice)
+                <label>Pret unitar</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vat)
+                <label>TVA</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quantity)
+                <label>Cantitate</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.QuantityRemaining)
+                <label>Cantitate Ramasa</label>
             </th>
             <th></th>
         </tr>
@@ -61,12 +59,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.QuantityRemaining)
             </td>
-            <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id=item.DocDetId  }) |
-                    @Html.ActionLink("Details", "Details", new {  id=item.DocDetId  }) |
-                    @Html.ActionLink("Delete", "Delete", new {  id=item.DocDetId  })
+                <td align="right">
+                    @Html.ActionLink("Modificare", "Edit", new {  id=item.DocDetId  } , new{@class="btn btn-primary"}) 
+              @*      @Html.ActionLink("Details", "Details", new {  id=item.DocDetId  }) |*@
+                    @Html.ActionLink("Stergere", "Delete", new {  id=item.DocDetId  }, new{@class="btn btn-primary"})
             </td>
         </tr>
 }
     </tbody>
 </table>
+<h3></h3>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugare</a>
+</p>

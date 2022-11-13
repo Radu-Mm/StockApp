@@ -37,20 +37,18 @@
               @*  @Html.DisplayNameFor(model => model.SellerPhone)*@
                 <label>Telefon</label>
             </th>
-            <th>
-           @*     @Html.DisplayNameFor(model => model.BlackListed)*@
+            @*      <th>
+              @Html.DisplayNameFor(model => model.BlackListed)
                 <label>Inactiv</label>
             </th>
-            <th>
-              @*  @Html.DisplayNameFor(model => model.BlackListMotive)*@
-                <label>Motiv Inactiv</label>
-            </th>
-@*            <th>
+
+           <th>
                 @Html.DisplayNameFor(model => model.BlackListTime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BlackListWho)
-            </th>*@
+            </th>
+            *@
             <th></th>
         </tr>
     </thead>
@@ -60,7 +58,7 @@
         @*    <td>
                 @Html.DisplayFor(modelItem => item.SellerId)
             </td>*@
-            <td>
+            <td >
                 @Html.DisplayFor(modelItem => item.SellerName)
             </td>
             <td>
@@ -81,17 +79,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BlackListed)
             </td>
-           <td>
+                @*   <td>
                 @Html.DisplayFor(modelItem => item.BlackListMotive)
             </td>
-                @*
+            
             <td>
                 @Html.DisplayFor(modelItem => item.BlackListTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BlackListWho)
             </td>*@
-            <td>
+                <td align="right">
                     @Html.ActionLink("Modificare", "Edit", new {  id=item.SellerId }, new {@class="btn btn-primary"}) 
                     @Html.ActionLink("Detalii", "Details", new {  id=item.SellerId  }, new {@class="btn btn-primary"}) 
                     @Html.ActionLink("Stergere", "Delete", new {  id=item.SellerId  }, new {@class="btn btn-primary"})

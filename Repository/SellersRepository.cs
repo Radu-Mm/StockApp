@@ -69,7 +69,7 @@ namespace StockApp.Repository
             }
             return list;
         }
-
+         
         public SellersModel GetSellerByID(Guid ID)
         {
             return MapDBObjectToModel(_DBContext.Sellers.FirstOrDefault(x => x.SellerId == ID));
@@ -81,6 +81,9 @@ namespace StockApp.Repository
             _DBContext.Sellers.Add(MapModelToDBOject(model));
             _DBContext.SaveChanges();
         }
+
+
+
 
         public void UpdateSeller(SellersModel model)
         {

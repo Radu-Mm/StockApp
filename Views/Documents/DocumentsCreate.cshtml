@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>DocumentsCreate</h1>
+<h1>Adauga Document Intrare</h1>
 
-<h4>DocumentsModel</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,23 +19,23 @@
                 <span asp-validation-for="DocId" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <label asp-for="DocTypeId" class="control-label"></label>
-                @Html.DropDownList("DocTypeId", new SelectList(ViewBag.docs , "Value", "Text"),new {@class="form-control"})
+                <label asp-for="DocTypeId" class="control-label">Tip Document</label>
+                @Html.DropDownList("DocTypeId", new SelectList(ViewBag.docs , "Value", "Text"),"",new {@class="form-control"})
                 <span asp-validation-for="DocTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DocNumber" class="control-label"></label>
+                <label asp-for="DocNumber" class="control-label">Numar Document</label>
                 <input asp-for="DocNumber" class="form-control" />
                 <span asp-validation-for="DocNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DocDate" class="control-label"></label>
+                <label asp-for="DocDate" class="control-label">Data Document</label>
                 <input asp-for="DocDate" class="form-control" />
                 <span asp-validation-for="DocDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellerId" class="control-label"></label>
-                @Html.DropDownList("SellerId", new SelectList(@ViewBag.Sellers, "Value", "Text"),new {@class="form-control"})
+                <label asp-for="SellerId" class="control-label">Furnizor</label>
+                @Html.DropDownList("SellerId", new SelectList(@ViewBag.Sellers, "Value", "Text"),"",new {@class="form-control"})
                 <span asp-validation-for="SellerId" class="text-danger"></span>
             </div>
            @* <div class="form-group">
@@ -54,7 +54,7 @@
                 <span asp-validation-for="DocTotalValueVat" class="text-danger"></span>
             </div>*@
             <div class="form-group form-check">
-                <label class="form-check-label">
+                <label class="form-check-label" value="Valid">
                     <input class="form-check-input" asp-for="IsValid" /> @Html.DisplayNameFor(model => model.IsValid)
                 </label>
             </div>
@@ -68,15 +68,17 @@
                 <input asp-for="ValidatedBy" class="form-control" />
                 <span asp-validation-for="ValidatedBy" class="text-danger"></span>
             </div>*@
+            <h3></h3>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Adaugare" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
+<h3></h3>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Inapoi</a>
 </div>
 
 @section Scripts {

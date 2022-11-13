@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ProductEdit</h1>
+<h1>Modificare Produs</h1>
 
-<h4>ProductsModel</h4>
+<h4></h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,29 +19,31 @@
                 <span asp-validation-for="ProductId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
+                <label asp-for="ProductName" class="control-label">Produs</label>
                 <input asp-for="ProductName" class="form-control" />
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
+                 
                     <input class="form-check-input" asp-for="ProductInUse" /> @Html.DisplayNameFor(model => model.ProductInUse)
-                </label>
+                Produs Utilizat</label>
             </div>
             <div class="form-group">
-                <label asp-for="ProductCategory" class="control-label"></label>
-                @Html.DropDownList("ProductCategory", new SelectList(@ViewBag.Categories, "Value", "Text"),new {@class="form-control"})
+                <label asp-for="ProductCategory" class="control-label">Categorie Produs</label>
+                @Html.DropDownList("ProductCategory", new SelectList(@ViewBag.Categories, "Value", "Text"),new {@class="form-control"}) 
                 <span asp-validation-for="ProductCategory" class="text-danger"></span>
             </div>
+            <h3></h3>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvare" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<h3></h3>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary">Inapoi</a>
 </div>
 
 @section Scripts {

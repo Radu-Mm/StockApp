@@ -29,7 +29,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CountryName)
             </td>
-            <td> 
+                <td align="right">
                     @Html.ActionLink("Modificare", "Edit", new { id=item.CountryId  } , new {@class="btn btn-primary"})
                     @* @Html.ActionLink("Detalii", "Details", new {  id=item.CountryId  }) |*@
                     @Html.ActionLink("Stergere", "Delete", new {  id=item.CountryId  }, new {@class="btn btn-primary"})

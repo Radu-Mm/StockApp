@@ -26,6 +26,7 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Modificati", "Edit", new {  id = Model.CountryId }) |
-    <a asp-action="Index">Inapoi la Nomenclator</a>
+    @Html.ActionLink("Modificati", "Edit", new {  id = Model.CountryId }, new{@class="btn btn-primary"})
+    <h3></h3>
+    <a asp-action="Index" class="btn btn-primary">Inapoi</a>
 </div>

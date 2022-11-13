@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Nomenclator Tipuri Documente</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -31,12 +29,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DocType)
             </td>
-            <td>
-                    @Html.ActionLink("Edit", "Edit", new {  id=item.DocTypeId  }) |
-                    @Html.ActionLink("Details", "Details", new {  id=item.DocTypeId  }) |
-                    @Html.ActionLink("Delete", "Delete", new {  id=item.DocTypeId  })
+                <td align="right">
+                    @Html.ActionLink("Modificare", "Edit", new {  id=item.DocTypeId  }, new{ @class="btn btn-primary"}) 
+               @*     @Html.ActionLink("Details", "Details", new {  id=item.DocTypeId  }) |*@
+                    @Html.ActionLink("Stergere", "Delete", new {  id=item.DocTypeId  }, new{ @class="btn btn-primary"})
             </td>
         </tr>
 }
     </tbody>
 </table>
+<h3></h3>
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adaugare</a>
+</p>

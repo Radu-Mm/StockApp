@@ -19,32 +19,32 @@
                 <span asp-validation-for="SellerId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellerName" class="control-label"></label>
+                <label asp-for="SellerName" class="control-label">Nume Furnizor</label>
                 <input asp-for="SellerName" class="form-control" />
                 <span asp-validation-for="SellerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellerUic" class="control-label"></label>
+                <label asp-for="SellerUic" class="control-label">Nr. Inregistrare</label>
                 <input asp-for="SellerUic" class="form-control" />
                 <span asp-validation-for="SellerUic" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellerCountry" class="control-label"></label>
-                @Html.DropDownList("CountryId", new SelectList(@ViewBag.Countries, "Value", "Text"),new {@class="form-control"})
+                <label asp-for="SellerCountry" class="control-label">Tara Furnizor</label>
+                @Html.DropDownList("SellerCountry", new SelectList(@ViewBag.Countries, "Value", "Text"),new {@class="form-control"})
                 <span asp-validation-for="SellerCountry" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellerDistrict" class="control-label"></label>
-                @Html.DropDownList("DistrictId", new SelectList(@ViewBag.Districts, "Value", "Text"),new {@class="form-control"})
+                <label asp-for="SellerDistrict" class="control-label">Judet/District</label>
+                @Html.DropDownList("SellerDistrict", new SelectList(@ViewBag.Districts, "Value", "Text"),new {@class="form-control"})
                 <span asp-validation-for="SellerDistrict" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellerAddress" class="control-label"></label>
+                <label asp-for="SellerAddress" class="control-label">Adresa Furnizor</label>
                 <input asp-for="SellerAddress" class="form-control" />
                 <span asp-validation-for="SellerAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SellerPhone" class="control-label"></label>
+                <label asp-for="SellerPhone" class="control-label">Telefon</label>
                 <input asp-for="SellerPhone" class="form-control" />
                 <span asp-validation-for="SellerPhone" class="text-danger"></span>
             </div>
@@ -54,11 +54,11 @@
                 </label>
             </div>
             <div class="form-group">
-                <label asp-for="BlackListMotive" class="control-label"></label>
+                <label asp-for="BlackListMotive" class="control-label">Motiv Inactiv</label>
                 <input asp-for="BlackListMotive" class="form-control" />
                 <span asp-validation-for="BlackListMotive" class="text-danger"></span>
             </div>
-            <div class="form-group"hidden>
+     @*       <div class="form-group"hidden>
                 <label asp-for="BlackListTime" class="control-label"></label>
                 <input asp-for="BlackListTime" class="form-control" />
                 <span asp-validation-for="BlackListTime" class="text-danger"></span>
@@ -67,16 +67,17 @@
                 <label asp-for="BlackListWho" class="control-label"></label>
                 <input asp-for="BlackListWho" class="form-control" />
                 <span asp-validation-for="BlackListWho" class="text-danger"></span>
-            </div>
+            </div>*@
+            <h3></h3>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<h3></h3>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary" >Inapoi</a>
 </div>
 
 @section Scripts {

@@ -92,6 +92,7 @@ namespace StockApp.Controllers
             ViewBag.Countries = getCountries;
             ViewBag.Districts = getDistricts;
             return View("SellerEdit", model);
+
         }
 
         // POST: SellersController/Edit/5
@@ -113,7 +114,7 @@ namespace StockApp.Controllers
             }
             catch
             {
-                return RedirectToAction("SellerEdit");
+                return RedirectToAction("Edit", id);
             }
         }
 

@@ -49,6 +49,7 @@ namespace StockApp.Controllers
         // GET: DocumentDetailsController/Create
         public ActionResult Create()
         {
+       
             var products = productsRepository.GetAllProducts();
             var getProducts = products.Select(x => new SelectListItem(x.ProductName, x.ProductId.ToString()));
             ViewBag.Products = getProducts;
@@ -57,7 +58,7 @@ namespace StockApp.Controllers
             var getDocuments = documents.Select(x => new SelectListItem(x.DocNumber, x.DocId.ToString()));
             ViewBag.Documents = getDocuments;
 
-
+   
             return View("DocumentDetailsCreate");
         }
 
@@ -115,7 +116,9 @@ namespace StockApp.Controllers
               //  if (task.Result)
               //  {
                     documentDetailsRepository.UpdateDocumentDetails(model);
-              //  }
+                //de scos dupa implementare iesiri
+                    documentDetailsRepository.updateQuantityRemaining(model);
+                //  }
 
                 return RedirectToAction("Index");
             }

@@ -13,7 +13,7 @@ namespace StockApp.Models
         [Display(Name = "Numar Document")]
         public string DocNumber { get; set; } = null!;
 
-        [DisplayFormat(DataFormatString="0:MM/dd/yyyy")]
+        [DisplayFormat(DataFormatString="dd/MM/yyyy")]
         [DataType(DataType.Date)]
         public DateTime DocDate { get; set; }
         public Guid SellerId { get; set; }

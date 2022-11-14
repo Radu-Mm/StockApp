@@ -191,7 +191,7 @@ namespace StockApp.Data
                     .HasColumnName("docID");
 
                 entity.Property(e => e.DocDate)
-                    .HasColumnType("datetime")
+                    .HasColumnType("date")
                     .HasColumnName("docDate");
 
                 entity.Property(e => e.DocNumber)
@@ -235,7 +235,6 @@ namespace StockApp.Data
                 entity.HasOne(d => d.Seller)
                     .WithMany(p => p.Documents)
                     .HasForeignKey(d => d.SellerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Documents__selle__70DDC3D8");
             });
 
@@ -265,13 +264,11 @@ namespace StockApp.Data
                 entity.HasOne(d => d.Doc)
                     .WithMany(p => p.DocumentDetails)
                     .HasForeignKey(d => d.DocId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__DocumentD__docID__74AE54BC");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.DocumentDetails)
                     .HasForeignKey(d => d.ProductId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__DocumentD__produ__75A278F5");
             });
 
@@ -313,6 +310,7 @@ namespace StockApp.Data
                 entity.HasOne(d => d.ProductcategoryNavigation)
                     .WithMany(p => p.Products)
                     .HasForeignKey(d => d.Productcategory)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("fk_prod_category");
             });
 
@@ -404,6 +402,7 @@ namespace StockApp.Data
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.Usages)
                     .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__usage__productID__1EA48E88");
 
                 entity.HasOne(d => d.UsageType)
